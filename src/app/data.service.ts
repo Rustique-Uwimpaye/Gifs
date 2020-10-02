@@ -12,13 +12,18 @@ export class DataService {
   constructor(private http:HttpClient) { }
 
   getTrendingGifs(){
-    return this.http.get(`https://api.giphy.com/v1/gifs/trending?api_key=%${environment.gifsApiKey}&limit=100`) .subscribe((response: any)=>{
+    return this.http.get(`https://api.giphy.com/v1/gifs/trending?api_key=0oi1y1cs45MgbrBR4hPhTpPX1I19mLNg&limit=25&rating=g`) .subscribe((response: any)=>{
     this.gifs.next(response.data);
     });
   }
   searchGifs(gifName){
-    return this.http.get(`https://api.giphy.com/v1/gifs/search?q=${gifName}&api_key=%${environment.gifsApiKey}&limit=100`) .subscribe((response: any)=>{
+    console.log(gifName)
+    return this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=0oi1y1cs45MgbrBR4hPhTpPX1I19mLNg&q=${gifName}&limit=25&offset=0&rating=g&lang=en`,{}).subscribe((response: any)=>{
       this.gifs.next(response.data);
       });
+  }
+
+  getGifs(){
+    return this.gifs.asObservable()
   }
 }

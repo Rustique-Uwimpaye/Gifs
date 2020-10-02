@@ -11,12 +11,11 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
   }
-  search(searchTerm: string){
+search(searchTerm: string){
+  console.log(searchTerm)
 if (searchTerm !== ''){
   this.dataService.searchGifs(searchTerm);
-  .subscribe((response: any) =>{
-    console.log('Search Data', response);
-  });
+  
 }
-  }
+  } 
 }
